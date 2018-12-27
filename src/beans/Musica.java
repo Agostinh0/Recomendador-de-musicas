@@ -1,6 +1,15 @@
 package beans;
 
-public class Musica {
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Musica implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private double danceability;
 	private double energy;
 	private double key;
@@ -30,6 +39,7 @@ public class Musica {
 		this.tempo = tempo;
 		this.duration_ms = duration_ms;
 	}
+	
 
 	public double getValence() {
 		return valence;
