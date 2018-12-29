@@ -1,9 +1,6 @@
 package beans;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Musica implements Serializable{
 	/**
@@ -40,6 +37,9 @@ public class Musica implements Serializable{
 		this.duration_ms = duration_ms;
 	}
 	
+	public Musica() {
+		
+	}
 
 	public double getValence() {
 		return valence;

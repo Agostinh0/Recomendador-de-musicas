@@ -2,10 +2,14 @@ import beans.Musica;
 import beans.Pessoa;
 import algoritmo.Knn;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 public class Main {
 	
@@ -21,6 +25,8 @@ public class Main {
 		ArrayList<Musica> musicas4 = new ArrayList<>();
 		
 		ArrayList<Musica> musicas5 = new ArrayList<>();
+		
+		ArrayList<Musica> musicasRecomendadas = new ArrayList<>();
 		
 		//Lendo dos arquivos para popular as listas
 		
@@ -128,7 +134,7 @@ public class Main {
 		
 		
 		Pessoa pessoa5 = new Pessoa("gustavo.c", "12345", musicas5);
-		
+		/*
 		Musica duskTillDawn = new Musica(0,0.15529,1,
 				0.537062,0,0.038744,0.145005,0.000006,0.15996,0.011935,0.841239,0.414108);
 		
@@ -138,6 +144,47 @@ public class Main {
 			System.out.println(knn.obterDistanciaEuclidiana(duskTillDawn, pessoa5.getMusicas().get(i)));
 			
 		}
+		*/
+		
+		  File file = new File("C:/Users/Agostinho (Carrara)/Desktop/Pastas e arquivos/Relatório + vetor de caracteristica/data.arff");
+
+	        FileReader fr = null;
+	        BufferedReader br = null;
+
+	        List<Musica> base = new ArrayList<>();
+
+	        try {
+	            AbrirArquivo.populateInstances(AbrirArquivo.openFile(file, fr, br), base);
+
+	        } catch (IOException e) {
+	            e.printStackTrace();
+
+	        } finally {
+	            AbrirArquivo.close(br, fr);
+
+	        }
+	               
+	        
+	        Knn knn = new Knn();
+	        int count = 1;
+	        
+	        for(int i = 0; i < base.size(); i++) {
+	        	for(int j = 0; j < pessoa2.getMusicas().size(); j++) {
+	        		double dist = knn.obterDistanciaEuclidiana(base.get(i), pessoa2.getMusicas().get(j));
+	        		if(dist <= 0.53) {
+	        			musicasRecomendadas.add(base.get(i));
+	        		}
+	        		
+	        		count++;
+	        	}
+	        		
+	        }
+	        
+	        
+	        for(int x = 0; x < musicasRecomendadas.size(); x++) {
+	        	System.out.println(musicasRecomendadas.get(x).getDanceability());
+	        }
+		
 		
 	}
 	
