@@ -35,7 +35,7 @@ public class Knn {
         		
     			double dist = knn.obterDistanciaEuclidiana(base.get(i), pessoa.getMusicas().get(j));
     			
-    			if(dist > 0 && dist < 0.418) {
+    			if(dist > 0 && dist < 0.48) {
     				System.out.println(count + " " + dist + " " + base.get(i).getDanceability());
     				count++;
     			}
@@ -73,7 +73,7 @@ public class Knn {
         		
     			double dist = knn.obterDistanciaManhattan(base.get(i), pessoa.getMusicas().get(j));
     			
-    			if(dist > 0 && dist < 1) {
+    			if(dist > 0 && dist < 1.2) {
     				System.out.println(count + " " + dist + " " +  base.get(i).getDanceability());
     				count++;
     			}
@@ -114,7 +114,7 @@ public class Knn {
         	for(int j = 0; j < pessoa.getMusicas().size(); j++) {
         		double sim = knn.obterSimiliridadeCosseno(base.get(i), pessoa.getMusicas().get(j));
         		
-        		if(sim > 0.98 && sim < 0.99) {
+        		if(sim > 0.969 && sim < 0.99) {
         			System.out.println(count + " " + sim + " " + base.get(i).getDanceability());
         			count++;
         		}
